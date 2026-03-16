@@ -3,7 +3,7 @@ package com.easen.aicode.service.impl;
 
 import com.easen.aicode.common.PageRequest;
 import com.easen.aicode.constant.ThumbConstant;
-import com.easen.aicode.hotkey.annotation.HotKeyCache;
+
 import com.easen.aicode.mapper.ThumbMapper;
 import com.easen.aicode.model.entity.App;
 import com.easen.aicode.model.entity.Thumb;

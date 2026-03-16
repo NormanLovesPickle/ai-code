@@ -24,7 +24,7 @@ import com.easen.aicode.model.entity.User;
 import com.easen.aicode.model.enums.AppRoleEnum;
 import com.easen.aicode.model.enums.AppTypeEnum;
 import com.easen.aicode.model.vo.AppVO;
-import com.easen.aicode.hotkey.annotation.HotKeyCache;
+
 import com.easen.aicode.ratelimit.annotation.RateLimit;
 import com.easen.aicode.ratelimit.enums.RateLimitType;
 import com.easen.aicode.service.AppService;
@@ -279,7 +279,6 @@ public class AppController {
 //            condition = "#appQueryRequest.pageNum <= 10"
 //    )
     @PostMapping("/list/featured")
-    @HotKeyCache(prefix = "featured_")
     public BaseResponse<Page<AppVO>> listFeaturedAppByPage(@RequestBody PageRequest pageRequest) {
         ThrowUtils.throwIf(pageRequest == null, ErrorCode.PARAMS_ERROR);
         // 限制每页最多20个
