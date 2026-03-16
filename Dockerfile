@@ -4,7 +4,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 COPY src/main/resources/application-template.yml src/main/resources/application.yml
-RUN mvn clean package -DskipTests -Dproject.build.sourceEncoding=UTF-8
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
