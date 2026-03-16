@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import com.easen.aicode.hotkey.annotation.HotKeyCache;
 import com.easen.aicode.common.BaseResponse;
 import com.easen.aicode.common.ResultUtils;
-import com.jd.platform.hotkey.client.callback.JdHotKeyStore;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

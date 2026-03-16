@@ -1,6 +1,6 @@
 package com.easen.aicode.hotkey;
 
-import com.jd.platform.hotkey.client.ClientStarter;
+
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
