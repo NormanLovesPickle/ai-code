@@ -1,9 +1,10 @@
 FROM maven:3.9-eclipse-temurin-21 AS build
+ENV LANG=C.UTF-8
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 COPY src/main/resources/application-template.yml src/main/resources/application.yml
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -Dproject.build.sourceEncoding=UTF-8
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
