@@ -1,0 +1,9 @@
+target/
+.git
+.vscode
+.idea
+*.iml
+ai-code-frontend/node_modules
+ai-code-frontend/dist
+.env
+部署所需配置.md

@@ -1,0 +1,59 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ai_code
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./ai_code.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ai-code-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - ai-code-net
+    restart: unless-stopped
+
+  backend:
+    build: .
+    env_file: .env
+    volumes:
+      - ./application-docker.yml:/app/config/application.yml
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - ai-code-net
+    restart: unless-stopped
+
+  nginx:
+    build: ./ai-code-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    networks:
+      - ai-code-net
+    restart: unless-stopped
+
+networks:
+  ai-code-net:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:

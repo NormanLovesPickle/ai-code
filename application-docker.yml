@@ -1,0 +1,93 @@
+spring:
+  application:
+    name: ai-code-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/ai_code
+    username: root
+    password: ${MYSQL_ROOT_PASSWORD}
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password:
+      database: 0
+      ttl: 3600
+  session:
+    store-type: redis
+    timeout: 259200
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    from: ${MAIL_USERNAME}
+    fromName: AI代码生成平台
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+server:
+  port: 8888
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        max-age: 259200
+springdoc:
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.easen.aicode.controller
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+langchain4j:
+  open-ai:
+    streaming-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY}
+      model-name: deepseek-chat
+      log-requests: true
+      log-responses: true
+    chat-model:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY}
+      model-name: deepseek-chat
+      log-requests: true
+      log-responses: true
+    reasoning-streaming-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY}
+      model-name: deepseek-chat
+      log-requests: true
+      log-responses: true
+    routing-chat-model:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY}
+      model-name: deepseek-chat
+      log-requests: true
+      log-responses: true
+cos:
+  client:
+    host: ${COS_HOST}
+    secretId: ${COS_SECRET_ID}
+    secretKey: ${COS_SECRET_KEY}
+    region: ${COS_REGION}
+    bucket: ${COS_BUCKET}
+pexels:
+  api-key: ${PEXELS_API_KEY}
+dashscope:
+  api-key: ${DASHSCOPE_API_KEY}
+  image-model: wan2.2-t2i-flash
+sa-token:
+  token-name: easen-ai-code
+  timeout: 2592000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: uuid
+  is-log: true

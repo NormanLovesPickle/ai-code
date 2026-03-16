@@ -6,6 +6,7 @@ target/
 *.jar
 *.log
 
-# 敏感配置（含密码和API Key）
+# 敏感配置
 src/main/resources/application.yml
 部署所需配置.md
+.env
